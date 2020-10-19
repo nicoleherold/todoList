@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="styles.css" rel="stylesheet">
+    <title>Todo</title>
+</head>
+<body>
+<div class="inputform">
+    <h2>Add a new Todo to your Todo-List</h2>
+    <form action="/todos" method='post'>
+        <label>Title: </label> <br> <input type="text" name="todo" value="give me a todo" /><br>
+        <label>Category: </label> <br> <input type="text" name="category" value="give me the category" /><br>
+        <label>Todo until: </label> <br> <input type="date" name="until" value="give me a todo" /><br>
+        <input type="submit" value="add">
+    </form>
+    <br>
+    <a href="todos">Cancel</a>
+</div>
+</body>
+</html>

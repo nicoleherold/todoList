@@ -1,0 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+body {
+    /*background-color: lightseagreen;*/
+    display: flex;
+    text-align: center;
+}
+h1, h2 {
+    font-family: "Amatic SC";
+    font-size: 4em;
+}
+label, input{
+    font-family: "Amatic SC";
+    font-size: 2em;
+    margin-top: 5px;
+    padding-top: 3px;
+}
+input {
+    width: 50vw;
+}
+label {
+    font-size: 3em;
+}
+
+.inputform {
+
+    text-align: center;
+}
