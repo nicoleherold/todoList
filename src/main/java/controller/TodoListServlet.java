@@ -2,6 +2,7 @@ package controller;
 
 import model.todo.Todo;
 import model.todo.TodoList;
+import model.todo.TodoNotFoundException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +37,10 @@ public class TodoListServlet extends HttpServlet {
             for (Todo todos : todoList.getTodos()) {
                 out.println(" <h2><b> " + todos.getTitle() + " </b></h2>");
                 out.println(" <h3> " + todos.getCategory() + " </h3>");
-                out.println(" <h3> " + todos.getDueDate() + " </h3><br/><br/>");
+                out.println(" <h3> " + todos.getDueDate() + " </h3>");
+                int listId = todos.getId();
+                out.println(" <h3><form action='todos' method='POST'><input name='id' type='hidden' value='" + listId + "'><input type='submit' value='done/delete'></input></form></h3>");
+                out.println(" <h3>--------------------------------------</h3>");
             }
             out.println(" <h2><a href='/todo.html'>New Todo</a></h2>");
             out.println("</body></html>");
@@ -60,12 +64,21 @@ public class TodoListServlet extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
 
-            // Get value from textField
-            String title = request.getParameter("todo");
-            String category = request.getParameter("category");
-            LocalDate date = LocalDate.parse(request.getParameter("until"));
+            if (request.getParameter("id") != null) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                try {
+                    this.todoList.removeTodo(id);
+                } catch (TodoNotFoundException e) {
+                    e.printStackTrace();
+                }
+                doGet(request, response);
 
+            } else {
 
+                // Get value from textField
+                String title = request.getParameter("todo");
+                String category = request.getParameter("category");
+                LocalDate date = LocalDate.parse(request.getParameter("until"));
 
 
                 Todo todo = new Todo(title, category, date);
@@ -76,8 +89,6 @@ public class TodoListServlet extends HttpServlet {
                 doGet(request, response);
 
 
-
-
-
+            }
         }
     }

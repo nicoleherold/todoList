@@ -9,9 +9,9 @@
 <div id="inputs">
     <h2>Add a new Todo to your Todo-List</h2>
     <form action="/todos" method='post'>
-        <label>Title: </label> <br> <input type="text" name="todo" placeholder="Todo" /><br>
+        <label>Title: </label> <br> <input type="text" name="todo" placeholder="Todo" required=true"/ ><br>
         <label>Category: </label> <br> <input type="text" name="category" placeholder="Category" /><br>
-        <label>Until: </label> <br> <input type="date" name="until" placeholder="until" /><br>
+        <label>Until: </label> <br> <input type="date" name="until" placeholder="yyyy-mm-dd" required=true"/><br>
         <input type="submit" value="add">
     </form>
     <br>
