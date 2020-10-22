@@ -26,13 +26,27 @@ public class TodoListServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
 
-            RequestDispatcher view = request.getRequestDispatcher("todo.html");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html><html><head><link href=\"listStyles.css\" rel=\"stylesheet\"></head><body>");
+            out.println(" <h1>Todo List</h1>");
+
+            for (Todo todos : todoList.getTodos()) {
+                out.println(" <h2> " + todos.getTitle() + " </h2>");
+                out.println(" <h3> " + todos.getCategory() + " </h2>");
+                out.println(" <h3> " + todos.getDueDate() + " </h2><br/><br/>");
+            }
+            out.println(" <a href='/todo.html'>New Todo</a>");
+            out.println("</body></html>");
+        }
+
+
+/*            RequestDispatcher view = request.getRequestDispatcher("todo.html");
 
             try {
                 view.forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
 
@@ -49,27 +63,18 @@ public class TodoListServlet extends HttpServlet {
             LocalDate date = LocalDate.parse(request.getParameter("until"));
 
 
-            // User can't allow to leave TextField empty
-//            if (!title.equals("") && !category.equals("")) {
+
+
                 Todo todo = new Todo(title, category, date);
                 System.out.println(todo);
                 // add record into list
                 this.todoList.addTodo(todo);
 
-//            }
+                doGet(request, response);
 
 
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html><html><head><link href=\"listStyles.css\" rel=\"stylesheet\"></head><body>");
-                out.println(" <h1>Todo List</h1>");
 
-                for (Todo todos : todoList.getTodos()) {
-                    out.println(" <h2> " + todos.getTitle() + " </h2>");
-                    out.println(" <h3> " + todos.getCategory() + " </h2>");
-                    out.println(" <h3> " + todos.getDueDate() + " </h2><br/><br/>");
-                }
-                out.println(" <a href='/todo.html'>New Todo</a>");
-                out.println("</body></html>");
-            }
+
+
         }
     }
