@@ -1,4 +1,4 @@
-package model.todo;
+package filter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,7 +16,9 @@ public class SanitizingFilter extends HttpFilter {
 
         private static final Logger logger = Logger.getLogger(SanitizingFilter.class.getName());
 
-        public void init(FilterConfig config) {
+        public void init(FilterConfig config) throws ServletException {
+            System.out.println("SanitizingFilter init!");
+
         }
 
         public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -26,6 +28,7 @@ public class SanitizingFilter extends HttpFilter {
         }
 
         public void destroy() {
+            System.out.println("Filter destroy!");
         }
 
     }

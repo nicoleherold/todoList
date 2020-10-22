@@ -1,8 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 
 body {
-    font-family: "Amatic SC";
+    font-family: 'Source Sans Pro', cursive;
     text-align: center;
 
+}
+
+h1{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 4em;
+}
+
+h2{
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+h3 {
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5em;
+    font-weight: 300;
 }

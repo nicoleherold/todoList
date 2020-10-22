@@ -1,4 +1,7 @@
-package model.todo;
+package controller;
+
+import model.todo.Todo;
+import model.todo.TodoList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,11 +34,11 @@ public class TodoListServlet extends HttpServlet {
             out.println(" <h1>Todo List</h1>");
 
             for (Todo todos : todoList.getTodos()) {
-                out.println(" <h2> " + todos.getTitle() + " </h2>");
-                out.println(" <h3> " + todos.getCategory() + " </h2>");
-                out.println(" <h3> " + todos.getDueDate() + " </h2><br/><br/>");
+                out.println(" <h2><b> " + todos.getTitle() + " </b></h2>");
+                out.println(" <h3> " + todos.getCategory() + " </h3>");
+                out.println(" <h3> " + todos.getDueDate() + " </h3><br/><br/>");
             }
-            out.println(" <a href='/todo.html'>New Todo</a>");
+            out.println(" <h2><a href='/todo.html'>New Todo</a></h2>");
             out.println("</body></html>");
         }
 
