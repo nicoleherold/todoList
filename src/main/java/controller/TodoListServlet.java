@@ -38,10 +38,16 @@ public class TodoListServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
           //Geht einfacher mit getLocale()
+<<<<<<< HEAD
         //String headers = request.getHeader("Accept-Language");
         //String language = //headers.substring(0,3);
 
         //String country = headers.substring(3,5);
+=======
+        String headers = request.getHeader("Accept-Language");
+        String language = headers.substring(0,3);
+        String country = headers.substring(3,5);
+>>>>>>> 95303992155c55d5a93f8f58b8c582446e8dca4c
         //Locale locale = new Locale(language, country);
 
 
