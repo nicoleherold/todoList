@@ -8,13 +8,16 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.logging.Logger;
 
 @WebFilter(filterName="sanitizingFilter", urlPatterns="/*")
 
 public class SanitizingFilter extends HttpFilter {
 
-        private static final Logger logger = Logger.getLogger(SanitizingFilter.class.getName());
+        //Aus Lösung von Herrn Fischli
+
+        private static final String VALID_PATTERN = "[A-Za-z0-9\\-,.:!?]*";
 
         public void init(FilterConfig config) throws ServletException {
             System.out.println("SanitizingFilter init!");
@@ -22,9 +25,18 @@ public class SanitizingFilter extends HttpFilter {
         }
 
         public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-            logger.info("Request URI: " + request.getRequestURI());
+            if (request.getMethod().equals("POST")){
+                request.setCharacterEncoding("UTF-8");
+                Enumeration<String> e = request.getParameterNames();
+                while (e.hasMoreElements()) {
+                    String value = request.getParameter(e.nextElement());
+                    if(!value.matches(VALID_PATTERN)){
+                        response.sendRedirect("error.html");
+                        return;
+                    }
+                }
+            }
             chain.doFilter(request, response);
-            logger.info("Response status: " + response.getStatus());
         }
 
         public void destroy() {
